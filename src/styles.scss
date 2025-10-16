@@ -1,1 +1,118 @@
 /* You can add global styles to this file, and also import other style files */
+
+$spacing-lg: 16px;
+$spacing-md: 12px;
+$spacing-sm: 8px;
+$spacing-xs: 4px;
+
+$spacing-xl: 24px;
+$breakpoint-sm: 640px;
+
+$color-primary: #3B82F6;
+$color-gray-700: #374151;
+$color-success: #17B26A;
+$color-danger: #F04438;
+
+@use '@angular/material' as mat;
+
+html, body { height: 100%; }
+
+//@import '@angular/material/prebuilt-themes/azure-blue.css';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F9FAFB;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Mixins
+@mixin respond-to($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+.loan-status {
+  padding: $spacing-lg;
+  margin-bottom: -2rem;
+
+  @include respond-to($breakpoint-sm) {
+    padding: $spacing-md $spacing-lg $spacing-lg;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
+
+    @include respond-to($breakpoint-sm) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+
+    &--pending {
+      background: #EAECF0;
+    }
+
+    &--approved {
+      background: $color-primary;
+    }
+  }
+
+  &__label {
+    font-size: 14px;
+    color: $color-gray-700;
+
+    @include respond-to($breakpoint-sm) {
+      font-size: 13px;
+    }
+  }
+}
+
+// Trend
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: 14px;
+  font-weight: 600;
+
+  svg {
+    width: 15px;
+    height: 14px;
+  }
+
+  &--up {
+    color: $color-success;
+  }
+
+  &--down {
+    color: $color-danger;
+  }
+}

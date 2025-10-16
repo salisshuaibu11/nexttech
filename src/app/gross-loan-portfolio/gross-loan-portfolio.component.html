@@ -1,0 +1,44 @@
+<mat-card class="stat-card" appearance="outlined">
+  <div class="stat-card__header">
+    <h3 class="stat-card__title">Gross Loan Portfolio</h3>
+    <button mat-icon-button class="stat-card__menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+  <div class="portfolio-controls">
+    <div class="portfolio-controls__trend">
+      <span class="trend trend--up">
+        <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.33333 12.8333V1.16666M7.33333 1.16666L1.5 7M7.33333 1.16666L13.1667 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>20%</span>
+      </span>
+      <span class="portfolio-controls__period">last yr</span>
+    </div>
+    <div class="period-toggle">
+      @for (period of chartPeriods; track $index) {
+        <button
+          class="period-toggle__btn"
+          [class.period-toggle__btn--active]="selectedChatPeriods() === period.label"
+          (click)="selectedChatPeriods.set(period.label)">
+          {{ period.label }}
+        </button>
+      }
+    </div>
+  </div>
+  <div class="loan-status">
+    <ul class="loan-status__list">
+      <li class="loan-status__item">
+        <span class="loan-status__indicator loan-status__indicator--pending"></span>
+        <span class="loan-status__label">Pending</span>
+      </li>
+      <li class="loan-status__item">
+        <span class="loan-status__indicator loan-status__indicator--approved"></span>
+        <span class="loan-status__label">Approved</span>
+      </li>
+    </ul>
+  </div>
+  <div style="padding: 1rem 1.5rem">
+    <canvas style="width: 100%; max-width: 800px; height: 250px;" id="barCanvas"></canvas>
+  </div>
+</mat-card>

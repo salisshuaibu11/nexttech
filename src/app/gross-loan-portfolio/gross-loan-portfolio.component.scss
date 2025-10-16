@@ -1,0 +1,140 @@
+// Variables
+$color-gray-200: #E5E7EB;
+$color-gray-400: #9CA3AF;
+$color-gray-500: #6B7280;
+$color-dark: #101828;
+$color-gray-50: #F9FAFB;
+$color-gray-900: #111827;
+
+$spacing-md: 12px;
+$spacing-sm: 8px;
+$spacing-lg: 16px;
+$spacing-xl: 24px;
+
+$border-radius-lg: 12px;
+$border-radius-md: 10px;
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+
+// Mixins
+@mixin respond-to($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+// Stat Card
+.stat-card {
+  border: 1px solid $color-gray-200;
+  border-radius: $border-radius-lg;
+  background: white;
+  transition: box-shadow 0.2s;
+  height: 100%;
+
+  &:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    padding-bottom: $spacing-lg;
+
+    @include respond-to($breakpoint-sm) {
+      padding: $spacing-lg;
+      padding-bottom: $spacing-md;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $color-dark;
+
+    @include respond-to($breakpoint-sm) {
+      font-size: 14px;
+    }
+  }
+
+  &__menu {
+    color: $color-gray-400;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    padding: 0 $spacing-xl $spacing-xl;
+
+    @include respond-to($breakpoint-sm) {
+      padding: 0 $spacing-lg $spacing-lg;
+    }
+  }
+}
+
+// Portfolio Controls
+.portfolio-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-xl $spacing-lg;
+  gap: $spacing-lg;
+
+  @include respond-to($breakpoint-md) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 $spacing-lg $spacing-md;
+  }
+
+  &__trend {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__period {
+    font-size: 14px;
+    color: $color-gray-500;
+  }
+}
+
+.period-toggle {
+  display: flex;
+  gap: $spacing-sm;
+
+  @include respond-to($breakpoint-sm) {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__btn {
+    padding: $spacing-md $spacing-lg;
+    border: 0;
+    background: transparent;
+    font-size: 14px;
+    color: $color-gray-500;
+    cursor: pointer;
+    border-radius: $border-radius-md;
+    transition: all 0.2s;
+    white-space: nowrap;
+
+    @include respond-to($breakpoint-sm) {
+      padding: $spacing-sm $spacing-md;
+      font-size: 13px;
+    }
+
+    &:hover {
+      background: $color-gray-50;
+    }
+
+    &--active {
+      background: #F9FAFB;
+      color: $color-gray-900;
+      font-weight: 500;
+    }
+  }
+}
